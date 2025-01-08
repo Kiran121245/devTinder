@@ -2,18 +2,29 @@ const express = require("express");
 
 const app = express(); // this is an instance of the express application
 
-// Define route-specific handlers
-app.get("/", (req, res) => { // [CHANGED! Used app.get() instead of app.use()]
-    res.send("From /");
+
+// This will only handle get call for /user
+app.get("/user", (req, res) => {
+    res.send({
+        "firstname":"Kiransai",
+        "age":25
+
+    });
 });
 
-app.get("/hello", (req, res) => { // [CHANGED! Used app.get() instead of app.use()]
-    res.send("From hello");
+
+//this will only handle post call for /user
+app.post("/user", (req, res) => {
+    console.log("Saved data successfully")
+    res.send("Successfully saved data to database.");
 });
 
-app.get("/test", (req, res) => { // [CHANGED! Used app.get() instead of app.use()]
-    res.send("From test");
+//this will only handle delete call for /user
+app.delete("/user", (req, res) => {
+    console.log("Deleted data successfully")
+    res.send("Successfully deleted data in database.");
 });
+
 
 app.listen(3000, () => {
     console.log("Server is running successfully on port 3000");
