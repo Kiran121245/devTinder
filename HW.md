@@ -14,3 +14,11 @@
 - Difference btw package-lock.json vs package.json
 
 - while pushing to git, which we will push to github 'package-lock.json' or 'package.json' ?
+
+- Explore routing and use of ?, +, (), * in the routes
+
+- Use of regex in routes /a/, /.*fly$/
+
+- Reading the query params in routes
+
+- Reading the dynamic routes

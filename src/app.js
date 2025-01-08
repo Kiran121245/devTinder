@@ -2,9 +2,9 @@ const express = require("express");
 
 const app = express(); // this is an instance of the express application
 
-
 // This will only handle get call for /user
-app.get("/user", (req, res) => {
+app.get("/user/:userId", (req, res) => {
+    console.log(req.params)
     res.send({
         "firstname":"Kiransai",
         "age":25
