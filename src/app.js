@@ -9,7 +9,6 @@ app.use("/admin", (req, res,next)=>{
         res.status(401).send("Unauthorized");
     }else{
         console.log("Auth done")
-        next();
     }
     
 });
@@ -69,6 +68,11 @@ app.delete("/admin", (req, res,next)=>{
 // });
 
 
-app.listen(3000, () => {
-    console.log("Server is running successfully on port 3000");
+// app.listen(3000, () => {
+//     console.log("Server is running successfully on port 3000");
+// });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
