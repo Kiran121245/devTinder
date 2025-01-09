@@ -22,3 +22,9 @@
 - Reading the query params in routes
 
 - Reading the dynamic routes
+
+- Read more about middleware
+
+- How express.js basically handles requests behind the scenes.
+
+- Difference btw app.use vs app.all
