@@ -4,17 +4,12 @@ const User = require("./models/user")
 
 const app = express(); // this is an instance of the express application
 
-app.post("/signup",async (req, res) => { 
-    const userObj = {
-        first_name: "Gks",
-        age: "20",
-        email: "examplemail@yahoo.com",
-        password: "India123",
-        gender:"Male"
-    }
-    const user = new User(userObj); //creating new instance of user model
-    await user.save(); //saving the user to the database
+app.use(express.json()); // express json middleware
 
+app.post("/signup",async (req, res) => { 
+    const user = new User(req.body); //creating new instance of user model
+
+    await user.save(); //saving the user to the database
     res.send("User created successfully");
 });
 

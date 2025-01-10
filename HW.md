@@ -28,3 +28,5 @@
 - How express.js basically handles requests behind the scenes.
 
 - Difference btw app.use vs app.all
+
+- Diff btw JSON vs JS OBJ
