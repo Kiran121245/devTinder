@@ -20,8 +20,24 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     gender: {
-        type: String
-    },
+        type: String,
+    }
+},{
+    timestamps: true,
 });
 
-module.exports = mongoose.model("User", userSchema);
+// Create unique indexes for the first_name and email fields
+/* userSchema.index({ first_name: 1 }, { unique: true }); */ 
+userSchema.index({ email: 1 }, { unique: true });
+
+
+const User = mongoose.model("User", userSchema); // Creating User model provided by mongoose.
+User.on('index', (err) => {
+    if (err) {
+        console.error("Error creating indexes:", err);
+    } else {
+        console.log("Indexes created successfully");
+    }
+});
+
+module.exports = User;

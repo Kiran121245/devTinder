@@ -42,11 +42,51 @@ app.get("/users", async (req, res)=>{
       
 });
 
+// Getting the user by Id
+app.get("/userbyId", async (req, res)=>{ 
+    const userId = req.body._id;
+    // console.log(userId);
+    const userDBId = await User.findById(userId);
+    res.send(userDBId);
+});
+
+// Deleting the user by Id.
+app.delete("/userbyId", async (req, res)=>{ 
+    const userId = req.body.userId;
+    // console.log(userId);
+    try{
+        const userDBId = await User.findByIdAndDelete(userId);
+        if (userDBId === null){
+            res.status(404).send("User not found");
+        }else{
+            res.send("User with Id: " + userId + ", deleted successfully");
+        }
+    }
+    catch(err){
+        res.status(500).send("Something went wrong");
+    }
+});
+
+// Updating the user by Id.
+app.patch("/userbyId", async(req, res)=>{
+    const userId = req.body.userId;
+    const data = req.body;
+    const userDBId = await User.findByIdAndUpdate(userId, data);
+    if (userDBId === null){
+        res.status(404).send("User not found");
+    }else{
+        res.send("User with Id: " + userId + ", updated successfully");
+    }
+});
+
 app.post("/signup",async (req, res) => { 
     const user = new User(req.body); //creating new instance of user model
-
-    await user.save(); //saving the user to the database
-    res.send("User created successfully");
+    try{
+        await user.save(); //saving the user to the database
+        res.send("User created successfully");
+    }catch(err){
+        res.status(400).send("Error creating user : " + err);
+    }
 });
 
 dbconnect().then(()=>{

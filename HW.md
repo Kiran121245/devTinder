@@ -30,3 +30,5 @@
 - Difference btw app.use vs app.all
 
 - Diff btw JSON vs JS OBJ
+
+- Diff btw PATCH & PUT
