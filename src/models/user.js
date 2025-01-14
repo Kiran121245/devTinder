@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
     first_name: {
         type: String,
-        required: true
+        required: true,
+        minlength: 4
     },
     last_name: {
         type: String
@@ -11,9 +12,10 @@ const userSchema = new mongoose.Schema({
     age: {
         type: Number
     },
-    email: {
+    emailId: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -28,7 +30,7 @@ const userSchema = new mongoose.Schema({
 
 // Create unique indexes for the first_name and email fields
 /* userSchema.index({ first_name: 1 }, { unique: true }); */ 
-userSchema.index({ email: 1 }, { unique: true });
+/* userSchema.index({ emailId: 1 }, { unique: true }); */
 
 
 const User = mongoose.model("User", userSchema); // Creating User model provided by mongoose.
